@@ -1,7 +1,11 @@
 const { configureStore } = require("@reduxjs/toolkit");
-import reducer from './slice';
+import usersReducer from './slice';
+import todoReducer from './todoSlice';
 
 export const store = configureStore({
-    reducer // when key & id is same then no need to write key
+    reducer: {
+        usersData: usersReducer,
+        todosData: todoReducer
+    }
 
 })

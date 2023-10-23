@@ -8,7 +8,7 @@ import { removeUser } from '../redux/slice';
 
 const DisplayUsers = () => {
     //we have declared state using users name in slice.js file
-    const userData = useSelector(data => data.users);
+    const userData = useSelector(data => data.usersData.users);
     console.log(userData);
     const dispatch = useDispatch();
 

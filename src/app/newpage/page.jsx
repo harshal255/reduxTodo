@@ -6,7 +6,7 @@ import { LuDelete } from 'react-icons/lu';
 
 const page = () => {
 
-    const userData = useSelector(data => data.users);
+    const userData = useSelector(data => data.usersData.users);
     console.log(userData);
     const dispatch = useDispatch();
     return (

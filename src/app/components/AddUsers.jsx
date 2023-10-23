@@ -17,6 +17,7 @@ const AddUsers = () => {
     return (
         <section className='flex flex-col justify-center items-center min-h-[25vh] max-w-full gap-5 border-4 border-yellow-400'>
             <Link href="/newpage" className='text-purple-500'>New Page</Link>
+            <Link href="/todolist" className='text-purple-500'>Todo List</Link>
             <div className="flex gap-5">
                 <div>AddUsers</div>
                 <input type="text" placeholder='add New user' className='border-2 border-blue-400' onChange={(e) => { setName(e.target.value) }} />
