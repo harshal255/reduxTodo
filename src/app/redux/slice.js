@@ -1,9 +1,10 @@
-'use client'
 import { createSlice, current, nanoid } from "@reduxjs/toolkit";
+
+const clientSide = typeof window !== "undefined";
 const initialState = {
     //for get data to use getItem in localstorage
     // users: [] //where users = key
-    users: JSON.parse(localStorage.getItem("users")) ? JSON.parse(localStorage.getItem("users")) : [] //where users = key
+    users: clientSide ? (JSON.parse(localStorage.getItem("users")) ? JSON.parse(localStorage.getItem("users")) : []) : [] //where users = key
 }
 
 
