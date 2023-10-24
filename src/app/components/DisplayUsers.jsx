@@ -13,7 +13,7 @@ const DisplayUsers = () => {
     const dispatch = useDispatch();
 
     return (
-        <div className='flex flex-col justify-center items-center min-h-[50vh] max-w-full gap-5 border-4 border-pink-300'>
+        <div className='flex flex-col justify-center items-center min-h-[50vh] max-w-full gap-5'>
             <h1 className='text-xl bg-pink-600 p-5'>Users List</h1>
             {
                 userData && userData.map((ele, index) => {
