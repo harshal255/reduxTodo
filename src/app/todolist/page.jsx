@@ -2,7 +2,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addTodo } from '../redux/todoSlice';
+import { addTodo,removeTodo } from '../redux/todoSlice';
 import { LuDelete } from 'react-icons/lu';
 
 const page = () => {
@@ -34,7 +34,7 @@ const page = () => {
             <div className="flex flex-col items-center justify-center gap-5 mt-10">
                 {
                     todoData && todoData.map((ele, index) => {
-                        return <div key={index} className='flex gap-2 items-center justify-between p-3 bg-green-400'>{ele.name} <span><LuDelete /></span></div>
+                        return <div key={index} className='flex gap-2 items-center justify-between p-3 bg-green-400'>{ele.name} <span><LuDelete onClick={() => dispatch(removeTodo(ele.id))}/></span></div>
                     })
 
                 }
