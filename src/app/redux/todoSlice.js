@@ -2,8 +2,8 @@ import { createSlice, current, nanoid } from "@reduxjs/toolkit";
 
 const clientSide = typeof window !== "undefined";
 const initialState = {
-    
-     todos: clientSide ? (JSON.parse(localStorage.getItem("todo")) ? JSON.parse(localStorage.getItem("todo")) : []) : []
+
+    todos: clientSide ? (JSON.parse(localStorage.getItem("todo")) ? JSON.parse(localStorage.getItem("todo")) : []) : []
 }
 
 const Slice = createSlice({
@@ -23,7 +23,14 @@ const Slice = createSlice({
             localStorage.setItem("todo", todosdata) //where users = key
             console.log(current(state.todos));
         },
+        removeTodo: (state, action) => {
+            // console.log(action);
+            //functions for deleting element from array
+            const data = state.todos.filter((ele) => ele.id !== action.payload);
+            state.todos = data;
+            localStorage.setItem("todo", JSON.stringify(data));
+        }
     }
 })
-export const { addTodo } = Slice.actions;
+export const { addTodo, removeTodo } = Slice.actions;
 export default Slice.reducer;
