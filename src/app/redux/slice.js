@@ -1,13 +1,19 @@
-import { createSlice, current, nanoid } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current, nanoid } from "@reduxjs/toolkit";
 
 const clientSide = typeof window !== "undefined";
 const initialState = {
     //for get data to use getItem in localstorage
     // users: [] //where users = key
-    users: clientSide ? (JSON.parse(localStorage.getItem("users")) ? JSON.parse(localStorage.getItem("users")) : []) : [] //where users = key
+    users: clientSide ? (JSON.parse(localStorage.getItem("users")) ? JSON.parse(localStorage.getItem("users")) : []) : [], //where users = key
+    userApiData: []
 }
 
+export const fetchApiUsers = createAsyncThunk("fetchApiUsers", async () => {
+    // console.log("action")
+    const result = await fetch("https://jsonplaceholder.typicode.com/users");
+    return result.json();
 
+})
 const Slice = createSlice({
     name: "initialName",
     initialState,
@@ -32,6 +38,16 @@ const Slice = createSlice({
             state.users = data;
             localStorage.setItem("users", JSON.stringify(data));
         }
+    },
+    extraReducers: (builder) => {
+
+        builder.addCase(fetchApiUsers.fulfilled, (state, action) => {
+            console.log("reducer", action)
+            state.isloading = false,
+                state.userApiData = action.payload;
+
+        });
+
     }
 })
 //export functions that we use any of components 
